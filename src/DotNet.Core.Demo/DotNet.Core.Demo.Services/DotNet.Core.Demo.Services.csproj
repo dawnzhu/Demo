@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="DotNet.Standard.NParsing" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NParsing.DbUtilities" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NParsing.SQLServer" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Core.Demo.IServices\DotNet.Core.Demo.IServices.csproj" />
+    <ProjectReference Include="..\DotNet.Core.Demo.Models\DotNet.Core.Demo.Models.csproj" />
+  </ItemGroup>
+
+</Project>

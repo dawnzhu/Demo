@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Castle.Core" Version="4.3.1" />
+    <PackageReference Include="DotNet.Standard.Common" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NParsing" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Core.Demo.Utilities\DotNet.Core.Demo.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>

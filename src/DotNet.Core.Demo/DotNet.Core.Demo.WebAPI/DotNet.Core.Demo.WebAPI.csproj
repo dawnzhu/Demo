@@ -1,0 +1,36 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Autofac" Version="4.8.1" />
+    <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
+    <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
+    <PackageReference Include="Castle.Core" Version="4.3.1" />
+    <PackageReference Include="DotNet.Standard.Common" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NParsing" Version="1.0.0" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DotNet.Core.Demo.IServices\DotNet.Core.Demo.IServices.csproj" />
+    <ProjectReference Include="..\DotNet.Core.Demo.Models\DotNet.Core.Demo.Models.csproj" />
+    <ProjectReference Include="..\DotNet.Core.Demo.Services\DotNet.Core.Demo.Services.csproj" />
+    <ProjectReference Include="..\DotNet.Core.Demo.Utilities\DotNet.Core.Demo.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
