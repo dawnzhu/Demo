@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNet.Standard.Common" Version="1.0.0" />
-    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.1" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.3" />
     <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
   </ItemGroup>
 

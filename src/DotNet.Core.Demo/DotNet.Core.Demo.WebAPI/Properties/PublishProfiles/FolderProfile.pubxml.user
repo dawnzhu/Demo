@@ -6,6 +6,6 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>C:\Users\zhi_d\Work\DotNet\DotNet.Standard\DotNet.Core.Demo\DotNet.Core.Demo.WebAPI\bin\Debug\netcoreapp2.1\publish\</_PublishTargetUrl>
+    <_PublishTargetUrl>C:\Users\zhi_d\Work\GitHub\Demo\src\DotNet.Core.Demo\DotNet.Core.Demo.WebAPI\bin\Debug\netcoreapp2.1\publish\</_PublishTargetUrl>
   </PropertyGroup>
 </Project>

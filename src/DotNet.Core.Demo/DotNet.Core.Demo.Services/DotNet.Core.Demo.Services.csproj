@@ -5,10 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="DotNet.Standard.NParsing" Version="1.0.0" />
-    <PackageReference Include="DotNet.Standard.NParsing.DbUtilities" Version="1.0.0" />
-    <PackageReference Include="DotNet.Standard.NParsing.SQLServer" Version="1.0.0" />
-    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.1" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="1.0.3" />
   </ItemGroup>
 
   <ItemGroup>
