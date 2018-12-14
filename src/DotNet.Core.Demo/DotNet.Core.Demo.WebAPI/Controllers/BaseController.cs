@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +17,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPatch]
-        public virtual async Task<ActionResult<dynamic>> Patch()
+        public virtual async Task<ResultInfo<IList<TM>>> Patch()
         {
             return await Service.GetList();
         }
@@ -26,7 +27,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public virtual async Task<ActionResult<dynamic>> Get()
+        public virtual async Task<ResultInfo<IList<TM>>> Get()
         {
             return await Service.GetList();
         }
@@ -37,7 +38,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public virtual async Task<ActionResult<dynamic>> Get(int id)
+        public virtual async Task<ResultInfo<TM>> Get(int id)
         {
             return await  Service.GetModel(id);
         }
@@ -48,7 +49,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPost]
-        public async Task<ActionResult<dynamic>> Post(TM model)
+        public async Task<ResultInfo<TM>> Post(TM model)
         {
             return await Service.Add(model);
         }
@@ -60,7 +61,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<ActionResult<dynamic>> Put(int id, TM model)
+        public async Task<ResultInfo<TM>> Put(int id, TM model)
         {
             model.Id = id;
             return await Service.Update(model);
@@ -72,7 +73,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="ids"></param>
         /// <returns></returns>
         [HttpDelete]
-        public virtual async Task<ActionResult<dynamic>> Delete(int[] ids)
+        public virtual async Task<ResultInfo<IList<TM>>> Delete(int[] ids)
         {
             var result = await Service.Delete(ids);
             return result;

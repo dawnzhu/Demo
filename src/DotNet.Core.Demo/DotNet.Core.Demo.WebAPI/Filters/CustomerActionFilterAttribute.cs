@@ -23,27 +23,21 @@ namespace DotNet.Core.Demo.WebAPI.Filters
 
                 var request = context.HttpContext.Request;
                 var strRequestJsons = new List<string> { request.QueryString.Value.ToDictionary().ToJsonString() };
-                if (request.ContentType != null)
+                if (request.ContentType != null 
+                    && request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
                 {
-                    if (request.ContentType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
+                    var postData = request.Body;
+                    var reader = new StreamReader(postData);
+                    var postContent = reader.ReadToEnd();
+                    if (string.IsNullOrEmpty(postContent))
                     {
-                        var postData = request.Body;
-                        var reader = new StreamReader(postData);
-                        var postContent = reader.ReadToEnd();
-                        if (string.IsNullOrEmpty(postContent))
-                        {
-                            return;
-                        }
-                        if (!postContent.StartsWith("{"))
-                        {
-                            return;
-                        }
-                        strRequestJsons.Add(postContent);
+                        return;
                     }
-                    else
+                    if (!postContent.StartsWith("{"))
                     {
-                        strRequestJsons.Add(request.Form.ToJsonString());
+                        return;
                     }
+                    strRequestJsons.Add(postContent);
                 }
                 controller.RequestParam = strRequestJsons.ToRequestParam<RequestParamInfo>();
 

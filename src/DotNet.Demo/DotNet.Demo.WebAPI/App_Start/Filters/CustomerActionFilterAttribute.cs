@@ -26,36 +26,26 @@ namespace DotNet.Demo.WebAPI.Filters
             {
                 #region Request数据处理
 
-                if (System.Web.HttpContext.Current != null)
+                var request = context.Request;
+                var strRequestJsons = new List<string> { request.RequestUri.Query.ToDictionary().ToJsonString() };
+                if (request.Content.Headers.ContentType != null
+                    && request.Content.Headers.ContentType.MediaType.StartsWith("application/json", StringComparison.OrdinalIgnoreCase))
                 {
-                    var strRequestJsons = new List<string> { System.Web.HttpContext.Current.Request.QueryString.ToJsonString() };
-                    if (System.Web.HttpContext.Current.Request.ContentType.StartsWith("application/json",
-                        StringComparison.OrdinalIgnoreCase))
+                    var postData = System.Web.HttpContext.Current.Request.InputStream;
+                    var reader = new StreamReader(postData);
+                    var postContent = reader.ReadToEnd();
+                    postData.Position = 0;
+                    if (string.IsNullOrEmpty(postContent))
                     {
-                        var postData = System.Web.HttpContext.Current.Request.InputStream;
-                        var reader = new StreamReader(postData);
-                        var postContent = reader.ReadToEnd();
-                        postData.Position = 0;
-                        if (string.IsNullOrEmpty(postContent))
-                        {
-                            return;
-                        }
-                        if (!postContent.StartsWith("{"))
-                        {
-                            return;
-                        }
-                        strRequestJsons.Add(postContent);
+                        return;
                     }
-                    else
+                    if (!postContent.StartsWith("{"))
                     {
-                        strRequestJsons.Add(System.Web.HttpContext.Current.Request.Form.ToJsonString());
+                        return;
                     }
-                    controller.RequestParam = strRequestJsons.ToRequestParam<RequestParamInfo>();
+                    strRequestJsons.Add(postContent);
                 }
-                else
-                {
-                    controller.RequestParam = new RequestParamInfo();
-                }
+                controller.RequestParam = strRequestJsons.ToRequestParam<RequestParamInfo>();
 
                 #endregion
             }
