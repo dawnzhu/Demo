@@ -19,3 +19,5 @@ src/DotNet.Demo/DotNet.Demo.Utilities/bin
 src/DotNet.Demo/DotNet.Demo.Utilities/obj
 src/DotNet.Demo/DotNet.Demo.WebAPI/bin
 src/DotNet.Demo/DotNet.Demo.WebAPI/obj
+src/DotNet.Core.Demo/DotNet.Core.Demo.WebAPI/log
+src/DotNet.Core.Demo/DotNet.Demo.WebAPI/log
