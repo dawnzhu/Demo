@@ -7,6 +7,7 @@ using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
 using DotNet.Standard.NParsing.Interface;
 using DotNet.Standard.NSmart;
+using DotNet.Standard.NSmart.Utilities;
 
 namespace DotNet.Core.Demo.Services
 {
@@ -14,6 +15,14 @@ namespace DotNet.Core.Demo.Services
         where TM: BaseInfo, new()
         where TT: BaseTerm, new()
     {
+        public BaseService()
+        {
+            if (!DoParam.Initialized)
+            {
+                DoParam.Initialize();
+            }
+        }
+
         public RequestParamInfo RequestParam { get; protected set; }
 
         protected virtual ResultInfo OnAddingJudge(TM model, ref ObParameterBase param)

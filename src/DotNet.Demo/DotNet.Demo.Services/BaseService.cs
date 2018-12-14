@@ -19,9 +19,9 @@ namespace DotNet.Demo.Services
         private static readonly Dictionary<string, DoConfigDbs> DoConfigDbs = ConfigurationManager.GetSection("connectionConfigs") as Dictionary<string, DoConfigDbs>;
         public BaseService() : base(DoConfigDbs)
         {
-            if (DoParamUtil.Config == null)
+            if (!DoParam.Initialized)
             {
-                DoParamUtil.Config = ConfigurationManager.GetSection("paramConfigs") as Dictionary<string, ParamConfig>;
+                DoParam.Initialize(ConfigurationManager.GetSection("paramConfigs") as Dictionary<string, ParamConfig>);
             }
         }
 
