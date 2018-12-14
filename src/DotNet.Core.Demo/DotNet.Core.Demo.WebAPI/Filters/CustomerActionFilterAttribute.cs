@@ -29,15 +29,10 @@ namespace DotNet.Core.Demo.WebAPI.Filters
                     var postData = request.Body;
                     var reader = new StreamReader(postData);
                     var postContent = reader.ReadToEnd();
-                    if (string.IsNullOrEmpty(postContent))
+                    if (!string.IsNullOrEmpty(postContent) && postContent.StartsWith("{") && postContent.EndsWith("}"))
                     {
-                        return;
+                        strRequestJsons.Add(postContent);
                     }
-                    if (!postContent.StartsWith("{"))
-                    {
-                        return;
-                    }
-                    strRequestJsons.Add(postContent);
                 }
                 controller.RequestParam = strRequestJsons.ToRequestParam<RequestParamInfo>();
 
