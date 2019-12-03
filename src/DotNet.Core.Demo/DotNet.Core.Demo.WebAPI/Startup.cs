@@ -1,5 +1,7 @@
+ï»¿using System;
 using System.Reflection;
 using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Autofac.Extras.DynamicProxy;
 using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
@@ -7,9 +9,9 @@ using DotNet.Core.Demo.WebAPI.Filters;
 using DotNet.Standard.NSmart;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
 
 namespace DotNet.Core.Demo.WebAPI
@@ -24,48 +26,43 @@ namespace DotNet.Core.Demo.WebAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+            //ä¾èµ–æ³¨å…¥çš„é…ç½®
             services.AddMvc(option =>
             {
                 option.Filters.Add(typeof(CustomerActionFilterAttribute));
                 option.Filters.Add(typeof(CustomerExceptionFilterAttribute));
-            }).AddNewtonsoftJson(option =>
+            }).AddJsonOptions(option =>
             {
                 option.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";
                 option.SerializerSettings.Converters.Add(new DoModelConverter());
-            });
-            services.AddControllersWithViews().AddControllersAsServices();
-        }
-
-        public void ConfigureContainer(ContainerBuilder builder)
-        {
-            //×¢²áÀ¹½ØÆ÷Àà
+            }).AddControllersAsServices().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            var builder = new ContainerBuilder();
+            builder.Populate(services);
+            //æ³¨å†Œæ‹¦æˆªå™¨ç±»
             builder.RegisterType<ServiceInterceptor>();
             builder.RegisterAssemblyTypes(Assembly.Load("DotNet.Core.Demo.Services"))
                 .Where(type => typeof(IBaseService).IsAssignableFrom(type) && !type.IsAbstract)
-                .AsImplementedInterfaces() //¸ù¾ÝÃû³ÆÔ¼¶¨£¬ÊµÏÖ·þÎñ½Ó¿ÚºÍ·þÎñÊµÏÖµÄÒÀÀµ
-                .InstancePerLifetimeScope() //ÉúÃüÖÜÆÚ
+                .AsImplementedInterfaces() //æ ¹æ®åç§°çº¦å®šï¼Œå®žçŽ°æœåŠ¡æŽ¥å£å’ŒæœåŠ¡å®žçŽ°çš„ä¾èµ–
+                .InstancePerLifetimeScope() //ç”Ÿå‘½å‘¨æœŸ
                 .PropertiesAutowired()
-                .EnableInterfaceInterceptors() //ÆôÓÃÀ¹½ØÆ÷
+                .EnableInterfaceInterceptors() //å¯ç”¨æ‹¦æˆªå™¨
                 .InterceptedBy(typeof(ServiceInterceptor));
             builder.RegisterAssemblyTypes(Assembly.GetEntryAssembly()).PropertiesAutowired();
+            var container = builder.Build();
+            return new AutofacServiceProvider(container);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseRouting();
-            app.UseAuthorization();
-            app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseMvc();
         }
     }
 }
