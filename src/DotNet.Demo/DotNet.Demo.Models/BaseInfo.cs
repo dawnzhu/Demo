@@ -17,7 +17,7 @@ namespace DotNet.Demo.Models
         protected BaseTerm(Type modelType, string rename) : base(modelType, rename)
         { }
 
-        protected BaseTerm(Type modelType, ObTermBase parent, MethodBase currentMethod) : base(modelType, parent, currentMethod)
+        protected BaseTerm(Type modelType, ObTermBase parent, string rename) : base(modelType, parent, rename)
         { }
     }
 }

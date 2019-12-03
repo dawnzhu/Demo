@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Web;
+﻿using System.Reflection;
 using System.Web.Http;
-using System.Web.Routing;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
 using Autofac.Integration.WebApi;
@@ -36,7 +31,6 @@ namespace DotNet.Demo.WebAPI
             var container = builder.Build();
             var webApiResolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = webApiResolver;
-
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }

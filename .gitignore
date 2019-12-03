@@ -1,4 +1,5 @@
 packages
+.vs
 src/DotNet.Core.Demo/DotNet.Core.Demo.IServices/bin
 src/DotNet.Core.Demo/DotNet.Core.Demo.IServices/obj
 src/DotNet.Core.Demo/DotNet.Core.Demo.Models/bin

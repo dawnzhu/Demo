@@ -6,6 +6,7 @@ using Autofac.Extras.DynamicProxy;
 using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
 using DotNet.Core.Demo.WebAPI.Filters;
+using DotNet.Standard.NSmart;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -36,6 +37,7 @@ namespace DotNet.Core.Demo.WebAPI
             {
                 option.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
                 option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";
+                option.SerializerSettings.Converters.Add(new DoModelConverter());
             }).AddControllersAsServices().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             var builder = new ContainerBuilder();
             builder.Populate(services);

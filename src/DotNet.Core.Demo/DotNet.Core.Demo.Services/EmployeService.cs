@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Reflection;
 using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
-using DotNet.Core.Demo.Utilities;
 using DotNet.Standard.NParsing.Interface;
 using DotNet.Standard.NSmart.Utilities;
 
@@ -19,9 +18,9 @@ namespace DotNet.Core.Demo.Services
             s = Term.CreateSort(MethodBase.GetCurrentMethod(), s, requestSorts);
         }
 
-        protected override void OnAdding(EmployeInfo model, ref ObParameterBase param)
+        protected override void OnAdding(EmployeInfo model, Employe term, ref ObParameterBase param)
         {
-            base.OnAdding(model, ref param);
+            base.OnAdding(model, term, ref param);
             model.CreateTime = DateTime.Now;
         }
     }

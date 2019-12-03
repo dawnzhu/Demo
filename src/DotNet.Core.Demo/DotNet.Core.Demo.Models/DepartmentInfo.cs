@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using DotNet.Standard.NParsing.ComponentModel;
+﻿using DotNet.Standard.NParsing.ComponentModel;
 using DotNet.Standard.NParsing.Factory;
 using DotNet.Standard.NParsing.Interface;
 
@@ -18,42 +17,22 @@ namespace DotNet.Core.Demo.Models
         [ObProperty(Name = "ID", Length = 4, Nullable = false)]
         public override int Id
         {
-            get { return base.Id; }
-            set { base.Id = value; }
+            get => base.Id;
+            set => base.Id = value;
         }
-
-        private string _name;
 
         /// <summary>
         /// 门部名称
         /// </summary>	
         [ObProperty(Name = "Name", Length = 50, Nullable = false)]
-        public string Name
-        {
-            get { return _name; }
-            set
-            {
-                SetPropertyValid(MethodBase.GetCurrentMethod());
-                _name = value;
-            }
-        }
-
-        private int _directorid;
+        public virtual string Name { get; set; }
 
         /// <summary>
         /// 主管编号
         /// </summary>
         [ObConstraint(ObConstraint.ForeignKey, Refclass = typeof(EmployeBaseInfo), Refproperty = "Id")]
         [ObProperty(Name = "DirectorID", Length = 4, Nullable = true)]
-        public int DirectorId
-        {
-            get { return _directorid; }
-            set
-            {
-                SetPropertyValid(MethodBase.GetCurrentMethod());
-                _directorid = value;
-            }
-        }
+        public virtual int DirectorId { get; set; }
 
         public EmployeBaseInfo Director { get; set; }
     }
@@ -66,28 +45,19 @@ namespace DotNet.Core.Demo.Models
         public Department() : base(typeof(DepartmentInfo))
         { }
 
-        public Department(ObTermBase parent, MethodBase currentMethod) : base(typeof(DepartmentInfo), parent, currentMethod)
+        public Department(ObTermBase parent, string rename) : base(typeof(DepartmentInfo), parent, rename)
         { }
 
         /// <summary>
         /// 部门名称
         /// </summary>		
-        public ObProperty Name
-        {
-            get { return GetProperty(MethodBase.GetCurrentMethod()); }
-        }
+        public virtual ObProperty Name { get; }
 
         /// <summary>
         /// 主管编号
         /// </summary>		
-        public ObProperty DirectorId
-        {
-            get { return GetProperty(MethodBase.GetCurrentMethod()); }
-        }
+        public virtual ObProperty DirectorId { get; }
 
-        public EmployeBase Director
-        {
-            get { return new Employe(this, MethodBase.GetCurrentMethod());}
-        }
+        public virtual EmployeBase Director { get; }
     }
 }

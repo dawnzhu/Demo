@@ -5,5 +5,6 @@ namespace DotNet.Demo.WebAPI.Controllers
 {
     public class EmployeController : BaseController<IEmployeService, EmployeInfo>
     {
+
     }
 }
