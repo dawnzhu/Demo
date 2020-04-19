@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
+using DotNet.Standard.NParsing.Factory;
 using DotNet.Standard.NParsing.Interface;
 using DotNet.Standard.NSmart.Utilities;
 
@@ -18,10 +19,16 @@ namespace DotNet.Core.Demo.Services
             s = Term.CreateSort(MethodBase.GetCurrentMethod(), s, requestSorts);
         }
 
-        protected override void OnAdding(EmployeInfo model, Employe term, ref ObParameterBase param)
+        protected override void OnAdding(EmployeInfo model, Employe term, ref ObJoinBase join, ref ObParameterBase param)
         {
-            base.OnAdding(model, term, ref param);
+            base.OnAdding(model, term, ref join, ref param);
             model.CreateTime = DateTime.Now;
+        }
+
+        protected override void OnUpdating(EmployeInfo model, Employe term, ref ObJoinBase join, ref ObParameterBase param)
+        {
+            base.OnUpdating(model, term, ref join, ref param);
+            join = (ObJoinBase) term.Join();
         }
     }
 }

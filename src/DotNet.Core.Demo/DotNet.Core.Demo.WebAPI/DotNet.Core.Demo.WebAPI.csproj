@@ -11,8 +11,8 @@
     <PackageReference Include="Autofac.Extensions.DependencyInjection" Version="4.3.1" />
     <PackageReference Include="Autofac.Extras.DynamicProxy" Version="4.5.0" />
     <PackageReference Include="Castle.Core" Version="4.3.1" />
-    <PackageReference Include="DotNet.Standard.NParsing.SQLServer" Version="1.0.3" />
-    <PackageReference Include="DotNet.Standard.NSmart" Version="1.1.3" />
+    <PackageReference Include="DotNet.Standard.NParsing.SQLServer" Version="1.1.0" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="1.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
   </ItemGroup>
 
@@ -21,6 +21,12 @@
     <ProjectReference Include="..\DotNet.Core.Demo.Models\DotNet.Core.Demo.Models.csproj" />
     <ProjectReference Include="..\DotNet.Core.Demo.Services\DotNet.Core.Demo.Services.csproj" />
     <ProjectReference Include="..\DotNet.Core.Demo.Utilities\DotNet.Core.Demo.Utilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Dockerfile">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

@@ -42,8 +42,9 @@ namespace DotNet.Core.Demo.WebAPI.Filters
             {
                 LogUtil.WriteLog(er);
             }
-
-            foreach (var property in controller.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(obj => obj.Name.EndsWith("Service")))
+            foreach (var property in controller.GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(obj => typeof(IBaseService).IsAssignableFrom(obj.PropertyType)))
             {
                 var obj = property.GetValue(controller);
                 if (obj == null) continue;

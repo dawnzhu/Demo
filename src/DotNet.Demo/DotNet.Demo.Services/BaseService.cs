@@ -28,15 +28,15 @@ namespace DotNet.Demo.Services
 
         public RequestParamInfo RequestParam { get; protected set; }
 
-        protected virtual ResultInfo OnAddingJudge(TM model, TT term, ref ObParameterBase param)
+        protected virtual ResultInfo OnAddingJudge(TM model, TT term, ref ObJoinBase join, ref ObParameterBase param)
         {
-            OnGlobalExecuting(term, ref param);
+            OnGlobalExecuting(term, ref join, ref param);
             return new ResultInfo();
         }
 
-        protected virtual ResultInfo OnUpdatingJudge(TM model, TT term, ref ObParameterBase param)
+        protected virtual ResultInfo OnUpdatingJudge(TM model, TT term, ref ObJoinBase join, ref ObParameterBase param)
         {
-            OnGlobalExecuting(term, ref param);
+            OnGlobalExecuting(term, ref join, ref param);
             return new ResultInfo();
         }
 
@@ -49,7 +49,8 @@ namespace DotNet.Demo.Services
         {
             //var ret = BaseAdd(model);
             ObParameterBase param = null;
-            var ret = OnAddingJudge(model, Term, ref param);
+            ObJoinBase join = null;
+            var ret = OnAddingJudge(model, Term, ref join, ref param);
             var result = new ResultInfo<TM>(ret)
             {
                 OperationCategory = OperationCategory.Add
@@ -64,7 +65,8 @@ namespace DotNet.Demo.Services
         public async Task<ResultInfo<TM>> Update(TM model)
         {
             ObParameterBase param = null;
-            var ret = OnUpdatingJudge(model, Term, ref param);
+            ObJoinBase join = null;
+            var ret = OnUpdatingJudge(model, Term, ref join, ref param);
             var result = new ResultInfo<TM>(ret)
             {
                 OperationCategory = OperationCategory.Mod
@@ -119,7 +121,9 @@ namespace DotNet.Demo.Services
 
         public void Initialize(IApiBase iApiBase)
         {
-            foreach (var property in GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public).Where(obj => obj.Name.EndsWith("Service")))
+            foreach (var property in GetType()
+                .GetProperties(BindingFlags.Instance | BindingFlags.Public)
+                .Where(obj => typeof(IBaseService).IsAssignableFrom(obj.PropertyType)))
             {
                 var obj = property.GetValue(this);
                 if (obj == null) continue;
