@@ -12,11 +12,10 @@ using DotNet.Standard.NSmart.Utilities;
 
 namespace DotNet.Core.Demo.Services
 {
-    public class BaseService<TM, TT> : DoServiceBase<TM, TT>, IBaseService<TM>
+    public class BaseService<TM> : DoServiceBase<TM>, IBaseService<TM>
         where TM: BaseInfo, new()
-        where TT: BaseTerm, new()
     {
-        public BaseService() : base(new TT().Of())
+        public BaseService()
         {
             if (!DoParam.Initialized)
             {
@@ -26,30 +25,28 @@ namespace DotNet.Core.Demo.Services
 
         public RequestParamInfo RequestParam { get; protected set; }
 
-        protected virtual ResultInfo OnAddingJudge(TM model, TT term, ref ObJoinBase join, ref ObParameterBase param)
+        protected virtual ResultInfo OnAddingJudge(TM model, ref IObQueryable<TM> queryable)
         {
-            OnGlobalExecuting(term, ref join, ref param);
+            OnGlobalExecuting(ref queryable);
             return new ResultInfo();
         }
 
-        protected virtual ResultInfo OnUpdatingJudge(TM model, TT term, ref ObJoinBase join, ref ObParameterBase param)
+        protected virtual ResultInfo OnUpdatingJudge(TM model, ref IObQueryable<TM> queryable)
         {
-            OnGlobalExecuting(term, ref join, ref param);
+            OnGlobalExecuting(ref queryable);
             return new ResultInfo();
         }
 
-        protected virtual ResultInfo OnDeletingJudge(TT term, ref ObJoinBase join, ref ObParameterBase param)
+        protected virtual ResultInfo OnDeletingJudge(ref IObQueryable<TM> queryable)
         {
-            OnGlobalExecuting(term, ref join, ref param);
+            OnGlobalExecuting(ref queryable);
             return new ResultInfo();
         }
 
         public new async Task<ResultInfo<TM>> Add(TM model)
         {
-            //var ret = BaseAdd(model);
-            ObParameterBase param = null;
-            ObJoinBase join = null;
-            var ret = OnAddingJudge(model, Term, ref join, ref param);
+            IObQueryable<TM> queryable = null;
+            var ret = OnAddingJudge(model, ref queryable);
             var result = new ResultInfo<TM>(ret)
             {
                 OperationCategory = OperationCategory.Add
@@ -63,32 +60,32 @@ namespace DotNet.Core.Demo.Services
 
         public async Task<ResultInfo<TM>> Update(TM model)
         {
-            ObParameterBase param = null;
-            ObJoinBase join = null;
-            var ret = OnUpdatingJudge(model, Term, ref join, ref param);
+            IObQueryable<TM> queryable = null;
+            var ret = OnUpdatingJudge(model, ref queryable);
             var result = new ResultInfo<TM>(ret)
             {
                 OperationCategory = OperationCategory.Mod
             };
             if (!ret.IsSuccess())
                 return result;
-            await UpdateAsync(model, o => o.Id == model.Id);
+            queryable.Where(o => o.Id == model.Id);
+            await UpdateAsync(model, o => queryable);
             result.Data = model;
             return result;
         }
 
         public async Task<ResultInfo<IList<TM>>> Delete(int[] ids)
         {
-            ObParameterBase param = null;
-            ObJoinBase join = null;
-            var result = OnDeletingJudge(Term, ref join, ref param);
+            IObQueryable<TM> queryable = null;
+            var result = OnDeletingJudge(ref queryable);
             var ret = new ResultInfo<IList<TM>>(result)
             {
                 OperationCategory = OperationCategory.Del
             };
             if (!ret.IsSuccess())
                 return ret;
-            await DeleteAsync(o => o.Id.In(ids));
+            queryable.Where(o => ids.Contains(o.Id));
+            await DeleteAsync(o => queryable);
             return new ResultInfo<IList<TM>>
             {
                 Data = ids.Select(id => new TM
@@ -100,7 +97,7 @@ namespace DotNet.Core.Demo.Services
 
         public async Task<ResultInfo<TM>> GetModel(int id)
         {
-            var data = await GetModelAsync(o =>o.Id == id);
+            var data = await GetModelAsync(o =>o.Where(w => w.Id == id));
             return new ResultInfo<TM>
             {
                 Data = data

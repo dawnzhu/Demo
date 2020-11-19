@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Reflection;
 using DotNet.Demo.IServices;
 using DotNet.Demo.Models;
@@ -9,12 +10,23 @@ namespace DotNet.Demo.Services
 {
     public class EmployeService : BaseService<EmployeInfo, Employe>, IEmployeService
     {
-        protected override void GetList(ref ObParameterBase p, IDictionary<string, object> requestParams, ref ObParameterBase gp, IDictionary<string, object> requestGroupParams,
-            ref IObSort s, IDictionary<string, string> requestSorts)
+        protected override void GetList(ref IObQueryable<EmployeInfo, Employe> queryable, IDictionary<string, object> requestParams, IDictionary<string, object> requestGroupParams,
+            IDictionary<string, string> requestSorts)
         {
-            base.GetList(ref p, requestParams, ref gp, requestGroupParams, ref s, requestSorts);
-            p = Term.CreateParameter(MethodBase.GetCurrentMethod(), p, requestParams);
-            s = Term.CreateSort(MethodBase.GetCurrentMethod(), s, requestSorts);
+            base.GetList(ref queryable, requestParams, requestGroupParams, requestSorts);
+            queryable = MethodBase.GetCurrentMethod().CreateQueryable(Term, queryable, requestParams, requestGroupParams, requestSorts);
+        }
+
+        protected override void OnAdding(EmployeInfo model, ref IObQueryable<EmployeInfo, Employe> queryable)
+        {
+            base.OnAdding(model, ref queryable);
+            model.CreateTime = DateTime.Now;
+        }
+
+        protected override void OnUpdating(EmployeInfo model, ref IObQueryable<EmployeInfo, Employe> queryable)
+        {
+            base.OnUpdating(model, ref queryable);
+            queryable.Join();
         }
     }
 }

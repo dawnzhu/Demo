@@ -9,12 +9,11 @@ namespace DotNet.Demo.Services
 {
     public class DepartmentService : BaseService<DepartmentInfo, Department>, IDepartmentService
     {
-        protected override void GetList(ref ObParameterBase p, IDictionary<string, object> requestParams, ref ObParameterBase gp, IDictionary<string, object> requestGroupParams,
-            ref IObSort s, IDictionary<string, string> requestSorts)
+        protected override void GetList(ref IObQueryable<DepartmentInfo, Department> queryable, IDictionary<string, object> requestParams, IDictionary<string, object> requestGroupParams,
+            IDictionary<string, string> requestSorts)
         {
-            base.GetList(ref p, requestParams, ref gp, requestGroupParams, ref s, requestSorts);
-            p = Term.CreateParameter(MethodBase.GetCurrentMethod(), p, requestParams);
-            s = Term.CreateSort(MethodBase.GetCurrentMethod(), s, requestSorts);
+            base.GetList(ref queryable, requestParams, requestGroupParams, requestSorts);
+            queryable = MethodBase.GetCurrentMethod().CreateQueryable(Term, queryable, requestParams, requestGroupParams, requestSorts);
         }
     }
 }

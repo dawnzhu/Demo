@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Castle.Core" Version="4.3.1" />
-    <PackageReference Include="DotNet.Standard.NSmart" Version="1.2.2" />
+    <PackageReference Include="Castle.Core" Version="4.4.1" />
+    <PackageReference Include="DotNet.Standard.NSmart" Version="2.0.1" />
   </ItemGroup>
 
   <ItemGroup>
