@@ -1,3 +1,6 @@
+using System;
+using System.Globalization;
+using System.IO;
 using System.Reflection;
 using Autofac;
 using Autofac.Extras.DynamicProxy;
@@ -5,12 +8,16 @@ using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
 using DotNet.Core.Demo.WebAPI.Filters;
 using DotNet.Standard.NSmart;
+using DotNet.Standard.NSmart.Utilities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 
 namespace DotNet.Core.Demo.WebAPI
 {
@@ -24,19 +31,33 @@ namespace DotNet.Core.Demo.WebAPI
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)  
         {
-            services.AddMvc(option =>
+            services.AddNSmart(option =>
+            {
+                option.Use(Configuration);
+            }).AddMvc(option =>
             {
                 option.Filters.Add(typeof(CustomerActionFilterAttribute));
                 option.Filters.Add(typeof(CustomerExceptionFilterAttribute));
             }).AddNewtonsoftJson(option =>
             {
+                option.SerializerSettings.UseNSmart();
+                /*
+                //忽略null属性
                 option.SerializerSettings.NullValueHandling = NullValueHandling.Ignore;
+                //日期格式
                 option.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";
+                //属性蛇形命名
+                option.SerializerSettings.ContractResolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() };
+                //DoModel对象转换
                 option.SerializerSettings.Converters.Add(new DoModelConverter());
+                //枚举转字符串
+                option.SerializerSettings.Converters.Add(new StringEnumConverter());*/
             });
-            services.AddControllersWithViews().AddControllersAsServices();
+            //services.AddControllersWithViews().AddControllersAsServices();
+            services.AddControllers();
+            services.AddEndpointsApiExplorer();
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -62,6 +83,7 @@ namespace DotNet.Core.Demo.WebAPI
             }
             app.UseRouting();
             app.UseAuthorization();
+            app.UseMiddleware<RequestMiddleware>();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

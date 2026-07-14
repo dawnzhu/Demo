@@ -2,6 +2,7 @@
 using DotNet.Demo.WebAPI.Filters;
 using DotNet.Standard.NSmart;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 
 namespace DotNet.Demo.WebAPI
@@ -22,12 +23,14 @@ namespace DotNet.Demo.WebAPI
             config.Formatters.Remove(config.Formatters.XmlFormatter);
             config.Formatters.JsonFormatter.SerializerSettings = new JsonSerializerSettings
             {
-                ContractResolver = new CamelCasePropertyNamesContractResolver(), //首字母小写
-                NullValueHandling = NullValueHandling.Ignore, //不显示值为null的属性
-                DateFormatString = "yyyy-MM-dd HH:mm:ss.fff",
+                //ContractResolver = new CamelCasePropertyNamesContractResolver(), //属性小驼峰命名
+                ContractResolver = new DefaultContractResolver { NamingStrategy = new SnakeCaseNamingStrategy() }, //属性蛇形命名
+                NullValueHandling = NullValueHandling.Ignore, //忽略null属性
+                DateFormatString = "yyyy-MM-dd HH:mm:ss.fff", //日期格式
                 Converters = new JsonConverter[]
                 {
-                    new DoModelConverter()
+                    new DoModelConverter(), //DoModel对象转换
+                    new StringEnumConverter() //枚举转字符串
                 }
             };
         }

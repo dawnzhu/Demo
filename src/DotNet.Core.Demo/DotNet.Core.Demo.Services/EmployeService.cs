@@ -4,6 +4,7 @@ using System.Reflection;
 using DotNet.Core.Demo.IServices;
 using DotNet.Core.Demo.Models;
 using DotNet.Standard.NParsing.Interface;
+using DotNet.Standard.NParsing.Factory;
 using DotNet.Standard.NSmart.Utilities;
 
 namespace DotNet.Core.Demo.Services
@@ -15,6 +16,12 @@ namespace DotNet.Core.Demo.Services
         {
             base.GetList(ref queryable, requestParams, requestGroupParams, requestSorts);
             queryable = MethodBase.GetCurrentMethod().CreateQueryable(queryable, requestParams, requestGroupParams, requestSorts);
+        }
+
+        protected override ResultInfo OnAddingJudge(EmployeInfo model, ref IObQueryable<EmployeInfo> queryable)
+        {
+            //var a = model.IsPropertyValid(o => o.Age);
+            return base.OnAddingJudge(model, ref queryable);
         }
 
         protected override void OnAdding(EmployeInfo model, ref IObQueryable<EmployeInfo> queryable)

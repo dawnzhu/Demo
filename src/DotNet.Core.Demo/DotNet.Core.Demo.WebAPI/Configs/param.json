@@ -33,6 +33,18 @@
               "Name": "Name",
               "Type": "System.String, mscorlib",
               "Symbol": "Like"
+            },
+            {
+              "Key": "gender",
+              "Name": "Gender",
+              "Type": "DotNet.Core.Demo.Models.Gender[], DotNet.Core.Demo.Models",
+              "Symbol": "In"
+            },
+            {
+              "Key": "departmentId",
+              "Name": "DepartmentId",
+              "Type": "System.Int32, mscorlib",
+              "Symbol": "=="
             }
           ],
           "Sort": [

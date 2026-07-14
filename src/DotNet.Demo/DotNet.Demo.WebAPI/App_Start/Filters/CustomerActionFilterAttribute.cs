@@ -60,7 +60,7 @@ namespace DotNet.Demo.WebAPI.Filters
                 baseService?.Initialize(controller);
             }
         }
-
+        
         private static Dictionary<string, object> ToActionProxyArguments(IDictionary<string, object> requestParams, Dictionary<string, object> actionArguments)
         {
             foreach (var key in actionArguments.Keys.ToList())

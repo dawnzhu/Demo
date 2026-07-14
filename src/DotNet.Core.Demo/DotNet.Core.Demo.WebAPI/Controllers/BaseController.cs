@@ -38,7 +38,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("{id}")]
-        public virtual async Task<ResultInfo<TM>> Get(int id)
+        public virtual async Task<ResultInfo<TM>> Get(long id)
         {
             return await  Service.GetModel(id);
         }
@@ -51,6 +51,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         [HttpPost]
         public async Task<ResultInfo<TM>> Post(TM model)
         {
+            var a = RequestParam;
             return await Service.Add(model);
         }
 
@@ -61,7 +62,7 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("{id}")]
-        public async Task<ResultInfo<TM>> Put(int id, TM model)
+        public async Task<ResultInfo<TM>> Put(long id, TM model)
         {
             model.Id = id;
             return await Service.Update(model);
@@ -73,14 +74,14 @@ namespace DotNet.Core.Demo.WebAPI.Controllers
         /// <param name="ids"></param>
         /// <returns></returns>
         [HttpDelete]
-        public virtual async Task<ResultInfo<IList<TM>>> Delete(int[] ids)
+        public virtual async Task<ResultInfo<IList<TM>>> Delete(long[] ids)
         {
             var result = await Service.Delete(ids);
             return result;
         }
     }
 
-    [Route("api/[controller]")]
+    [Route("api/[controller]/{action=index}")]
     [ApiController]
     public class BaseController : ControllerBase, IApiBase
     {

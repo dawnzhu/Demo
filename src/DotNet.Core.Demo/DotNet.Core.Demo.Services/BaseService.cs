@@ -15,13 +15,14 @@ namespace DotNet.Core.Demo.Services
     public class BaseService<TM> : DoServiceBase<TM>, IBaseService<TM>
         where TM: BaseInfo, new()
     {
+        /*
         public BaseService()
         {
             if (!DoParam.Initialized)
             {
                 DoParam.Initialize();
             }
-        }
+        }*/
 
         public RequestParamInfo RequestParam { get; protected set; }
 
@@ -74,7 +75,7 @@ namespace DotNet.Core.Demo.Services
             return result;
         }
 
-        public async Task<ResultInfo<IList<TM>>> Delete(int[] ids)
+        public async Task<ResultInfo<IList<TM>>> Delete(long[] ids)
         {
             IObQueryable<TM> queryable = null;
             var result = OnDeletingJudge(ref queryable);
@@ -95,9 +96,12 @@ namespace DotNet.Core.Demo.Services
             };
         }
 
-        public async Task<ResultInfo<TM>> GetModel(int id)
+        public async Task<ResultInfo<TM>> GetModel(long id)
         {
-            var data = await GetModelAsync(o =>o.Where(w => w.Id == id));
+            IObQueryable<TM> queryable = null;
+            OnGlobalExecuting(ref queryable);
+            queryable.Where(o => o.Id == id);
+            var data = await GetModelAsync(o => queryable);
             return new ResultInfo<TM>
             {
                 Data = data
@@ -113,7 +117,7 @@ namespace DotNet.Core.Demo.Services
 
         public async Task<IList<TM>> GetDataList(Action<int> countAccessor)
         {
-            return await GetListAsync(null, RequestParam.Params, RequestParam.Sorts, RequestParam.PageSize, RequestParam.PageIndex, countAccessor);
+            return await GetListAsync(RequestParam.Params, RequestParam.Sorts, RequestParam.PageSize, RequestParam.PageIndex, countAccessor);
         }
 
         public void Initialize(IApiBase iApiBase)

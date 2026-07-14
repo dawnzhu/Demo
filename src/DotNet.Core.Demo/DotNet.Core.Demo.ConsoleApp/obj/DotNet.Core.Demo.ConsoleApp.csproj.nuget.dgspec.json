@@ -1,0 +1,360 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.ConsoleApp\\DotNet.Core.Demo.ConsoleApp.csproj": {}
+  },
+  "projects": {
+    "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.ConsoleApp\\DotNet.Core.Demo.ConsoleApp.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.ConsoleApp\\DotNet.Core.Demo.ConsoleApp.csproj",
+        "projectName": "DotNet.Core.Demo.ConsoleApp",
+        "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.ConsoleApp\\DotNet.Core.Demo.ConsoleApp.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.ConsoleApp\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Work\\GitHub\\Release": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj"
+              },
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj"
+              },
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Services\\DotNet.Core.Demo.Services.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Services\\DotNet.Core.Demo.Services.csproj"
+              },
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "DotNet.Standard.NParsing.SQLServer": {
+              "target": "Package",
+              "version": "[2.0.1, )"
+            },
+            "DotNet.Standard.NSmart": {
+              "target": "Package",
+              "version": "[2.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj",
+        "projectName": "DotNet.Core.Demo.IServices",
+        "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Work\\GitHub\\Release": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj",
+        "projectName": "DotNet.Core.Demo.Models",
+        "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\DotNet.Core.Demo.Models.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Models\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Work\\GitHub\\Release": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Castle.Core": {
+              "target": "Package",
+              "version": "[5.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Services\\DotNet.Core.Demo.Services.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Services\\DotNet.Core.Demo.Services.csproj",
+        "projectName": "DotNet.Core.Demo.Services",
+        "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Services\\DotNet.Core.Demo.Services.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Services\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Work\\GitHub\\Release": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj": {
+                "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.IServices\\DotNet.Core.Demo.IServices.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj",
+        "projectName": "DotNet.Core.Demo.Utilities",
+        "projectPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\DotNet.Core.Demo.Utilities.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "D:\\Work\\GitHub\\Demo\\src\\DotNet.Core.Demo\\DotNet.Core.Demo.Utilities\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
+          "D:\\Work\\GitHub\\Release": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "DotNet.Standard.NSmart": {
+              "target": "Package",
+              "version": "[2.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.404\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

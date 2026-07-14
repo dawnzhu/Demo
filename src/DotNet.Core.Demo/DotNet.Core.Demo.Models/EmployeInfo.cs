@@ -15,7 +15,7 @@ namespace DotNet.Core.Demo.Models
         /// </summary>
         [ObConstraint(ObConstraint.PrimaryKey)]
         [ObProperty(Name = "ID", Length = 4, Nullable = false)]
-        public override int Id
+        public override long Id
         {
             get => base.Id;
             set => base.Id = value;
@@ -62,7 +62,7 @@ namespace DotNet.Core.Demo.Models
         /// 性别
         /// </summary>	
         [ObProperty(Name = "Gender", Length = 4, Nullable = false)]
-        public virtual int Gender { get; set; }
+        public virtual Gender Gender { get; set; }
 
         /// <summary>
         /// 创建时间
@@ -90,6 +90,8 @@ namespace DotNet.Core.Demo.Models
         public virtual int Age { get; set; }
 
         public DepartmentInfo Department { get; set; }
+
+        //public Test Test { get; set; }
 
     }
 
@@ -131,5 +133,19 @@ namespace DotNet.Core.Demo.Models
 
         public virtual Department Department { get; }
 
+    }
+
+    public enum Gender
+    {
+        MALE = 1,
+
+        FEMALE = 2
+    }
+
+    public enum Test
+    {
+        TEST_TEST = 1,
+
+        TEST_AAA = 2
     }
 }
